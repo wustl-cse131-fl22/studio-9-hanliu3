@@ -18,10 +18,7 @@ public class WordCount {
 	 * 
 	 * the resulting Map<String, Integer> would contain
 	 * 
-	 * key="to", value=2;
-	 * key="be", value=2;
-	 * key="or", value=1;
-	 * key="not", value=1;
+	 * key="to", value=2; key="be", value=2; key="or", value=1; key="not", value=1;
 	 * 
 	 * @param words
 	 * @return a map which contains all of the distinct words as keys, each
@@ -29,8 +26,26 @@ public class WordCount {
 	 */
 	public static Map<String, Integer> countWords(List<String> words) {
 
-		// FIXME
-		throw new NotYetImplementedException();
+		Map<String, Integer> wordcount = new HashMap<String, Integer>();
 
+		for (int i = 0; i < words.size(); i++) {
+			int count = 1;
+			for (int j = i + 1; j < words.size(); j++) {
+				if (words.get(j).equals(words.get(i))) {
+					count++;
+				}
+			}
+			int test = 0;
+			for (int k = 0; k < i; k++) {
+				if (words.get(k).equals(words.get(i))) {
+					test++;
+				}
+			}
+			if (test == 0) {
+				wordcount.put(words.get(i), count);
+			}
+		}
+
+		return wordcount;
 	}
 }
